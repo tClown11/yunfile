@@ -18,7 +18,7 @@ go-micro是个管理微服务的框架，go-micro服务端与客户端之间的�
 
 go-micro的默认注册的方式是mdns，在生成端最后使用consul或etcd来进行服务的发现与注册
 
-## 设计
+## 设计(非微服务架构)
 
 - go-micro设计
 
