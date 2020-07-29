@@ -1,0 +1,77 @@
+syntax="proto3";
+package proto;
+option go_package=".;proto";
+
+service AccountService{
+   rpc Signin(ReqSignin) returns(ResSignin) {}
+   rpc Signup(ReqSignup) returns(ResSignup) {}
+   rpc SelectUserFileAll(ReqGetUserFile) returns(ResGetUserFile) {}
+   rpc RenameFile(ReqReName) returns(ResReName) {}
+   rpc UserInfo(ReqUserInfo) returns(ResUserInfo) {}
+}
+
+message ReqSignin {
+    string username = 1;
+    string password = 2;
+}
+
+message ResSignin {
+    string token = 1;
+    int64 uid = 2;
+}
+
+message ReqSignup {
+    string username = 1;
+    string password = 2;
+}
+
+message ResSignup {
+    string message = 1;
+    int64 code = 2;
+}
+
+message ReqGetUserFile {
+    int64 uid = 1;
+}
+
+message ResGetUserFile {
+    repeated UserFile userfile = 1;
+}
+
+message UserFile {
+    int64 id = 1;
+    int64 userid = 2;
+    string filehash = 3;
+    string filename = 4;
+    int64 filesize = 5;
+}
+
+message ReqReName {
+    string filehash = 1;
+    string filename = 2;
+    int64 uid = 3;
+}
+
+message ResReName {
+    bool ok = 1;
+    string message = 2;
+}
+
+message ReqUserInfo {
+    int64 uid = 1;
+}
+
+message MetaFile {
+    int64 id = 1;
+    string filehash = 2;
+    string filename = 3;
+    int64 filesize = 4;
+    string location = 5;
+}
+
+
+message ResUserInfo {
+    int64 id = 1;
+    string username = 2;
+}
+
